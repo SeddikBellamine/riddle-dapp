@@ -1,0 +1,32 @@
+name: riddle-service
+type: Backend Service
+
+image:
+  build: Dockerfile
+
+cpu: 256
+memory: 512
+platform: linux/x86_64
+count: 1
+exec: true
+
+# Default placeholder, overridden per environment
+secrets:
+  BOT_PRIVATE_KEY: BOT_PRIVATE_KEY
+  RPC_URL: RPC_URL
+  CONTRACT_ADDRESS: CONTRACT_ADDRESS
+  OPENAI_API_KEY: OPENAI_API_KEY
+
+environments:
+  dev:
+    secrets:
+      BOT_PRIVATE_KEY: /copilot/riddle-bot/dev/secrets/BOT_PRIVATE_KEY
+      RPC_URL: /copilot/riddle-bot/dev/secrets/RPC_URL
+      CONTRACT_ADDRESS: /copilot/riddle-bot/dev/secrets/CONTRACT_ADDRESS
+      OPENAI_API_KEY: /copilot/riddle-bot/dev/secrets/OPENAI_API_KEY
+  prod:
+    secrets:
+      BOT_PRIVATE_KEY: /copilot/riddle-bot/prod/secrets/BOT_PRIVATE_KEY
+      RPC_URL: /copilot/riddle-bot/prod/secrets/RPC_URL
+      CONTRACT_ADDRESS: /copilot/riddle-bot/prod/secrets/CONTRACT_ADDRESS
+      OPENAI_API_KEY: /copilot/riddle-bot/prod/secrets/OPENAI_API_KEY
