@@ -17,7 +17,12 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "install:copilot": "node ./scripts/install-copilot.js",
+    "copilot:deploy:dev": "./bin/copilot deploy --name riddle-service --env dev",
+    "copilot:deploy:prod": "./bin/copilot deploy --name riddle-service --env prod",
+    "copilot:logs:dev": "./bin/copilot svc logs --name riddle-service --env dev",
+    "copilot:logs:prod": "./bin/copilot svc logs --name riddle-service --env prod"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -44,6 +49,7 @@
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",
+    "follow-redirects": "^1.15.9",
     "globals": "^16.0.0",
     "jest": "^29.7.0",
     "prettier": "^3.4.2",

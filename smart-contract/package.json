@@ -10,12 +10,7 @@
     "artifact-to-abis": "node tools/artifacts-to-abis.mjs",
     "lint": "solhint contracts/*.sol && eslint .",
     "format": "prettier --write \"{scripts,test,contracts}/**/*.{ts,sol}\"",
-    "check-format": "prettier --check \"{scripts,test,contracts}/**/*.{ts,sol}\"",
-    "postinstall": "curl -Lo ./copilot https://github.com/aws/copilot-cli/releases/latest/download/copilot-linux && chmod +x ./copilot",
-    "copilot:deploy:dev": "./copilot deploy --name riddle-service --env dev",
-    "copilot:deploy:prod": "./copilot deploy --name riddle-service --env prod",
-    "copilot:logs:dev": "./copilot svc logs --name riddle-service --env dev",
-    "copilot:logs:prod": "./copilot svc logs --name riddle-service --env prod"
+    "check-format": "prettier --check \"{scripts,test,contracts}/**/*.{ts,sol}\""
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-network-helpers": "^1.0.9",
