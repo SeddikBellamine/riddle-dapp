@@ -40,6 +40,8 @@ This project uses **AWS Copilot** with **GitHub Actions** for CI/CD. Two environ
 - `dev` – for staging/testing
 - `prod` – for production
 
+![CI/CD GIF](./cicd.gif)
+
 To deploy manually:
 
 ```bash
