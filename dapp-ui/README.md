@@ -7,7 +7,7 @@ This is the React + Vite-based frontend for the Riddle DApp.
 ### 1. Install Dependencies
 
 ```bash
-npm install
+npm ci
 ```
 
 ### 2. Environment Setup
@@ -22,7 +22,6 @@ Edit `.env` with your actual credentials:
 
 ```dotenv
 VITE_REOWN_PROJECT_ID=your-reown-project-id
-VITE_ROLLBAR_ACCESS_TOKEN=your-rollbar-access-token
 VITE_SMART_CONTRACT_ADDRESS=your-smart-contract-address
 VITE_RPC_URL=blockchain-rpc-url
 ```

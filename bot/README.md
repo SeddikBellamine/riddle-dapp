@@ -15,7 +15,15 @@ click B href "https://sepolia.etherscan.io/" "View Sepolia Etherscan"
 
 This is a NestJS service that acts as a bot interacting with a smart contract on the Sepolia testnet. It also integrates OpenAI for enhanced features such as riddle generation or answer verification.
 
-## Configuration
+## Setup Instructions
+
+### 1. Install Dependencies
+
+```bash
+npm ci
+```
+
+### 2. Environment Setup
 
 Create a `.env` file based on the provided template:
 
