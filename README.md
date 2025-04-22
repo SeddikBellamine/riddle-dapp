@@ -15,8 +15,8 @@ Welcome to the Riddle DApp Monorepo! This project is a full-stack decentralized 
 ### Frontend URLs
 | Environment | URL |
 |-------------|-----|
-| Development | [https://d111nbdhcwesn9.cloudfront.net/](https://d111nbdhcwesn9.cloudfront.net/) |
-| Production  | [https://d3sg6ibaloxnvv.cloudfront.net/](https://d3sg6ibaloxnvv.cloudfront.net/) |
+| Development | [https://d3sg6ibaloxnvv.cloudfront.net/](https://d3sg6ibaloxnvv.cloudfront.net/)   |
+| Production  | [https://d111nbdhcwesn9.cloudfront.net/](https://d111nbdhcwesn9.cloudfront.net/)|
 
 ### 📄 Deployed Contracts on Sepolia
 
