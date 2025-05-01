@@ -1,4 +1,4 @@
-import { Injectable, Logger } from "@nestjs/common";
+import { Injectable, Logger, OnModuleDestroy } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { ethers } from "ethers";
 import OpenAI from "openai";
@@ -6,21 +6,22 @@ import { OnchainRiddle__factory } from "../types/contract/factories/OnchainRiddl
 import { OnchainRiddle } from "../types/contract/OnchainRiddle";
 
 @Injectable()
-export class RiddleBotService {
+export class RiddleBotService implements OnModuleDestroy {
   private readonly logger = new Logger(RiddleBotService.name);
   private contract: OnchainRiddle;
   private openai: OpenAI;
+  private provider: ethers.WebSocketProvider;
 
   constructor(private readonly configService: ConfigService) {
     // Load and validate environment variables
-    const rpcUrl = this.getEnvOrThrow("RPC_URL");
+    const wssUrl = this.getEnvOrThrow("RPC_WSS_URL");
     const botPrivateKey = this.getEnvOrThrow("BOT_PRIVATE_KEY");
     const contractAddress = this.getEnvOrThrow("CONTRACT_ADDRESS");
     const openAiKey = this.getEnvOrThrow("OPENAI_API_KEY");
 
-    // Set up ethers provider and contract
-    const provider = new ethers.JsonRpcProvider(rpcUrl);
-    const wallet = new ethers.Wallet(botPrivateKey, provider);
+    // Set up ethers WebSocket provider and contract
+    this.provider = new ethers.WebSocketProvider(wssUrl);
+    const wallet = new ethers.Wallet(botPrivateKey, this.provider);
     this.contract = OnchainRiddle__factory.connect(contractAddress, wallet);
 
     // Set up OpenAI client
@@ -90,11 +91,14 @@ export class RiddleBotService {
     const riddle = match[1].trim();
     const answer = match[2].trim();
 
-    this.logger.log(
-      `🧠 Riddle generated:\n- Riddle: ${riddle}\n- Answer: ${answer}`,
-    );
     this.logger.log(`- Riddle: ${riddle}`);
     this.logger.log(`- Answer: ${answer}`);
     return { riddle, answer };
+  }
+
+  onModuleDestroy() {
+    // Cleanup on shutdown
+    this.logger.log("🔌 Disconnecting WebSocket provider...");
+    void this.provider?.destroy();
   }
 }
